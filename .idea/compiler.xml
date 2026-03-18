@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for notification-worker-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="loyalty-service" />
+        <module name="platform-config-service" />
+        <module name="pharmacy-nutrition-service" />
+        <module name="customer-service" />
+        <module name="content-events-service" />
+        <module name="notification-worker-service" />
+        <module name="storage-service" />
+        <module name="notification-service" />
+        <module name="vendor-service" />
+        <module name="payment-service" />
+        <module name="catalogue-service" />
+        <module name="logistics-service" />
+        <module name="pet-care-service" />
+        <module name="search-service" />
+        <module name="booking-service" />
+        <module name="analytics-service" />
+        <module name="api-gateway" />
+        <module name="order-service" />
+        <module name="identity-service" />
+        <module name="admin-service" />
+        <module name="tele-service" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="admin-service" options="-parameters" />
+      <module name="analytics-service" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="booking-service" options="-parameters" />
+      <module name="catalogue-service" options="-parameters" />
+      <module name="content-events-service" options="-parameters" />
+      <module name="customer-service" options="-parameters" />
+      <module name="identity-service" options="-parameters" />
+      <module name="logistics-service" options="-parameters" />
+      <module name="loyalty-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
+      <module name="notification-worker-service" options="-parameters" />
+      <module name="order-service" options="-parameters" />
+      <module name="payment-service" options="-parameters" />
+      <module name="pet-care-service" options="-parameters" />
+      <module name="pharmacy-nutrition-service" options="-parameters" />
+      <module name="platform-config-service" options="-parameters" />
+      <module name="search-service" options="-parameters" />
+      <module name="storage-service" options="-parameters" />
+      <module name="tele-service" options="-parameters" />
+      <module name="vendor-service" options="-parameters" />
+    </option>
+  </component>
+</project>
