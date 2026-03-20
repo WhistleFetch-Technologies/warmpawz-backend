@@ -1,27 +1,30 @@
 package com.warmpawz.customer.entity;
-
-import com.warmpawz.customer.enums.AddressType;
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
-
 @Entity
-@Table(name = "customer_addresses")
+@Table(name = "customer_addresses",
+        indexes = {
+                @Index(name = "idx_customer_addresses_customer", columnList = "customer_id")
+        })
+@Data
 public class CustomerAddress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "address_type", nullable = false)
-    private AddressType addressType = AddressType.HOME;
+    @Column(name = "address_type")
+    private String addressType = "home";
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
@@ -46,11 +49,11 @@ public class CustomerAddress {
 
     private String landmark;
 
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
     private Map<String, Object> coordinates;
-
-    @Column(name = "is_default", nullable = false)
-    private boolean isDefault = false;
+    @Column(name = "is_default")
+    private boolean isDefault;
 
     @Column(name = "flat_no")
     private String flatNo;
@@ -66,20 +69,6 @@ public class CustomerAddress {
     @Column(name = "apartment_name")
     private String apartmentName;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-
-    @Column(name = "updated_at")
     private Instant updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = Instant.now();
-        updatedAt = Instant.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = Instant.now();
-    }
 }

@@ -1,6 +1,7 @@
 package com.warmpawz.customer.enums;
-
 public enum PetGender {
     MALE,
-    FEMALE
+    FEMALE,
+    NEUTERED,
+    SPAYED
 }

@@ -2,11 +2,12 @@ package com.warmpawz.customer.entity;
 
 import com.warmpawz.customer.enums.OnboardingStatus;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
-
+@Data
 @Entity
 @Table(name = "customer_identity",
         indexes = {
@@ -24,32 +25,28 @@ public class CustomerIdentity {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "onboarding_status", nullable = false)
     private OnboardingStatus onboardingStatus = OnboardingStatus.INIT;
 
-    @Column(name = "current_step")
     private String currentStep;
 
     @Column(columnDefinition = "jsonb")
     private Map<String, Object> metadata;
 
-    @Column(name = "last_activity_at")
     private Instant lastActivityAt;
-
-    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-
-    @Column(name = "updated_at")
     private Instant updatedAt;
 
+    @OneToOne(mappedBy = "customerIdentity")
+    private Customer customer;
+
     @PrePersist
-    protected void onCreate() {
+    void onCreate() {
         createdAt = Instant.now();
         updatedAt = Instant.now();
     }
 
     @PreUpdate
-    protected void onUpdate() {
+    void onUpdate() {
         updatedAt = Instant.now();
     }
 }
